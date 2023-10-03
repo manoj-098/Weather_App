@@ -107,9 +107,10 @@ const fetchDay = (data) => {
 };
 
 const fetchHourly = (list, start) => {
+  fechDetails(list, start);
   const hour = document.querySelector(".hour");
   hour.innerHTML = "";
-  let i = start;
+  var i = start;
   while (i < list.length) {
     let time;
     if (i < 10) {
@@ -119,10 +120,33 @@ const fetchHourly = (list, start) => {
     }
     const hourElement = document.createElement("div");
     hourElement.classList.add("hour_contents");
+		hourElement.id = i;
+    if (i === start) {
+      hourElement.classList.add("boxActive");
+    }
     hourElement.innerHTML = `<h3>${list[i].temp_c} ºC</h3>
 															<img src="images/clear.png" />
 															<h3>${time}</h3>`;
     hour.appendChild(hourElement);
     i++;
+
+    hourElement.addEventListener("click", async () => {
+      document.querySelectorAll(".hour_contents").forEach((el, index) => {
+        el.classList.remove("boxActive");
+      });
+      hourElement.classList.add("boxActive");
+			fechDetails(list, hourElement.id);
+    });
   }
+};
+
+const fechDetails = (list, hour) => {
+	console.log(list)
+  const wind = document.querySelector(".wind h1");
+  const humidity = document.querySelector(".humidity h1");
+  wind.innerHTML = "";
+  humidity.innerHTML = "";
+
+  wind.innerHTML = `${list[hour].wind_kph}<span> kp/h</span>`;
+  humidity.innerHTML = `${list[hour].humidity}<span> %</span>`;
 };
