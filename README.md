@@ -42,8 +42,9 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 We would like to thank WeatherAPI.com for providing the weather data used in this application.
 
 ## Contributors
-[<img src="https://github.com/Gauravst.png" width="50px"/><br /><sub><a href="https://github.com/Gauravst">Gauravst</a></sub>](https://github.com/Gauravst)
-[<img src="https://github.com/manoj-098.png" width="50px"/><br /><sub><a href="https://github.com/manoj-098">manoj-098</a></sub>](https://github.com/manoj-098)
+[<img src="https://github.com/Gauravst.png" width="60px"/><br /><sub><a href="https://github.com/Gauravst">Gauravst</a></sub>](https://github.com/Gauravst)
+<br>
+[<img src="https://github.com/manoj-098.png" width="60px"/><br /><sub><a href="https://github.com/manoj-098">manoj-098</a></sub>](https://github.com/manoj-098)
 
 
 Feel free to contribute to this project by creating issues or submitting pull requests!
