@@ -5,7 +5,7 @@ This weather app, created by manoj-098 and Gauravst, provides real-time weather 
 
 ## Features
 - Get current weather information for any location.
-- View weather forecasts for the next 5 days.
+- View weather forecasts for the next 7 days.
 - Detailed weather data including temperature, humidity, wind speed, and more.
 - Search for weather data by city name or coordinates (latitude and longitude).
 - Responsive design for a seamless user experience on desktop and mobile devices.
@@ -40,7 +40,12 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Acknowledgments
 We would like to thank WeatherAPI.com for providing the weather data used in this application.
-Contributors
-Gauravst
-manoj-098
+
+## Contributors
+[<img src="https://github.com/Gauravst.png" width="60px"/><br /><sub><a href="https://github.com/Gauravst">Gauravst</a></sub>](https://github.com/Gauravst/repository)
+
+[<img src="https://github.com/manoj-098.png" width="60px"/><br /><sub><a href="https://github.com/manoj-098">manoj-098</a></sub>](https://github.com/manoj-098/repository)
+
+
 Feel free to contribute to this project by creating issues or submitting pull requests!
+
