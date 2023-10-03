@@ -11,7 +11,7 @@ This weather app, created by manoj-098 and Gauravst, provides real-time weather 
 - Responsive design for a seamless user experience on desktop and mobile devices.
 
 ## Screenshots
-![Screenshot 1](screenshots/screenshot1.png)
+![Screenshot 1](images/screenshots/screenshot1.png)
 
 ## Technologies Used
 - HTML5
