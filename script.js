@@ -141,7 +141,6 @@ const fetchHourly = (list, start) => {
 };
 
 const fechDetails = (list, hour) => {
-	console.log(list)
   const wind = document.querySelector(".wind h1");
   const humidity = document.querySelector(".humidity h1");
   wind.innerHTML = "";
