@@ -17,7 +17,7 @@ searchIcon.addEventListener("click", () => {
 
 const fetchWeather = async (weather, key, query, days, Whichday) => {
   const queryCity = query ? query : "New-York";
-  const url = `http://api.weatherapi.com/v1/${weather}?key=${key}&q=${queryCity}&days=${days}`;
+  const url = `https://api.weatherapi.com/v1/${weather}?key=${key}&q=${queryCity}&days=${days}`;
   try {
     const response = await fetch(url);
     if (!response.ok) {
