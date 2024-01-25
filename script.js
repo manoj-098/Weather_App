@@ -9,14 +9,45 @@ const daysList = document.querySelector(".days");
 const searchInput = document.querySelector(".search input");
 const searchIcon = document.querySelector(".search img");
 
+let codePair = {
+	1183: "drizzle.png",
+	1153: "drizzle.png",
+	1000: "clear.png",
+	1003: "clear.png",
+	1006: "clouds.png",
+	1009: "clouds.png",
+	1180: "rain.png",
+	1183: "rain.png",
+	1186: "rain.png",
+	1189: "rain.png",
+	1192: "rain.png",
+	1195: "rain.png",
+	1198: "rain.png",
+	1201: "rain.png",
+	1066: "snow.png",
+	1210: "snow.png",
+	1213: "snow.png",
+	1216: "snow.png",
+	1219: "snow.png",
+	1222: "snow.png",
+	1225: "snow.png",
+	1237: "snow.png",
+	1240: "snow.png",
+	1243: "snow.png",
+	1246: "snow.png",
+	1249: "snow.png",
+	1252: "snow.png",
+	1255: "snow.png",
+	1258: "snow.png",
+};
+
 searchIcon.addEventListener("click", () => {
   let city = searchInput.value.replace(/\s+/g, "-");
-  console.log(city);
   fetchWeather("forecast.json", apiKey, city, 7, 0);
 });
 
 const fetchWeather = async (weather, key, query, days, Whichday) => {
-  const queryCity = query ? query : "New-York";
+  const queryCity = query ? query : "Uttarakhand";
   const url = `https://api.weatherapi.com/v1/${weather}?key=${key}&q=${queryCity}&days=${days}`;
   try {
     const response = await fetch(url);
@@ -34,14 +65,16 @@ const fetchWeather = async (weather, key, query, days, Whichday) => {
   }
 };
 
-fetchWeather("forecast.json", apiKey, "New-York", 7, 0);
+fetchWeather("forecast.json", apiKey, "Uttarakhand", 7, 0);
 
 const info = async (data, whichDay) => {
   const value = data.forecast.forecastday[whichDay];
   if (whichDay == 0) {
     temp.innerText = data.current.temp_c + "ºC";
     conditionText.innerText = data.current.condition.text;
-    cityName.textContent = searchInput.value ? searchInput.value : "New York";
+    cityName.textContent = searchInput.value
+      ? searchInput.value
+      : "Uttarakhand";
 
     const today = await fetchDay(data.location.localtime);
     dayText.innerText = today.day + ", " + today.month + " " + today.date;
@@ -51,7 +84,9 @@ const info = async (data, whichDay) => {
   } else {
     temp.innerText = value.day.mintemp_c + "ºC / " + value.day.maxtemp_c + "ºC";
     conditionText.innerText = value.day.condition.text;
-    cityName.textContent = searchInput.value ? searchInput.value : "New York";
+    cityName.textContent = searchInput.value
+      ? searchInput.value
+      : "Uttarakhand";
 
     const today = await fetchDay(value.date);
     dayText.innerText = today.day + ", " + today.month + " " + today.date;
@@ -79,7 +114,11 @@ const forecast = async (data) => {
       await info(data, index);
     });
 
-    dayItem.innerHTML = `<img src="./images/clouds.png" >
+		const forecastDayCode = item.day.condition.code
+		let forecastDayIcon = codePair[forecastDayCode];
+    let forecastDayImageSrc = forecastDayIcon ? `images/${forecastDayIcon}` : "images/clear.png";
+
+    dayItem.innerHTML = `<img src="${forecastDayImageSrc}" >
 			<div class="info">
 				<h2>${index == 0 ? "Today" : forecastDay.day}</h2>
 				<p>${item.day.condition.text}</p>
@@ -111,31 +150,42 @@ const fetchHourly = (list, start) => {
   const hour = document.querySelector(".hour");
   hour.innerHTML = "";
   var i = start;
+  var x = i;
   while (i < list.length) {
     let time;
-    if (i < 10) {
-      time = i <= 12 ? `0${i} AM` : `0${i} PM`;
+    let hourNum = x % 12 == 0 ? 12 : x % 12;
+    let period = x < 12 ? " AM" : " PM";
+    if (hourNum < 10) {
+      time = `0${hourNum}`;
     } else {
-      time = i <= 12 ? `${i}  AM` : `${i}  PM`;
+      time = `${hourNum}`;
     }
+
+    time = time + period;
+    let conditionCode = list[i].condition.code;
+
+    let icon = codePair[conditionCode];
+    let imageSrc = icon ? `images/${icon}` : "images/clear.png";
+
     const hourElement = document.createElement("div");
     hourElement.classList.add("hour_contents");
-		hourElement.id = i;
+    hourElement.id = i;
     if (i === start) {
       hourElement.classList.add("boxActive");
     }
     hourElement.innerHTML = `<h3>${list[i].temp_c} ºC</h3>
-															<img src="images/clear.png" />
+															<img src=${imageSrc} alt="Weather Icon"/>
 															<h3>${time}</h3>`;
     hour.appendChild(hourElement);
     i++;
+    x++;
 
     hourElement.addEventListener("click", async () => {
       document.querySelectorAll(".hour_contents").forEach((el, index) => {
         el.classList.remove("boxActive");
       });
       hourElement.classList.add("boxActive");
-			fechDetails(list, hourElement.id);
+      fechDetails(list, hourElement.id);
     });
   }
 };
